@@ -1,0 +1,5 @@
+#!/bin/sh -e
+
+if [ -L  /usr/share/mrbs-1.2.5/web/config.inc.php ]; then
+  rm /usr/share/mrbs-1.2.5/web/config.inc.php
+fi

@@ -1,0 +1,19 @@
+/* Logo */
+div#toplogo {background: transparent url("pics/mrbs_logo.png") top left no-repeat; height: 55px; width: 200px;}
+/* Schriftzug */
+/* div#topcompany {display: none;} */
+div#topcompany a {display: block; margin: 0 0 5px 20px; padding: 0; font-size: 110%; text-decoration: none; font-weight:bold;}
+/* Farbe des headers */
+div#headermenu { background-color: #D1D6EF; border-top:1px solid black;}
+/* Farbe des footers */
+div#footer {background-color: #D1D6EF; border-top:1px solid black;}
+/* Raum und Geraeteblocks */
+div.items, div.areas {font-size: 85%em;}
+div.items h1, div.areas h1 {font-size: 1.3em;}
+.active {display: block; border: 1px solid black; background: #FFE980; padding: 2px;}
+ul li a {display: block; padding: 2px;}
+ul li{margin-top: 3px;}
+/* Farben fuer Kategorien */
+.E {background: #D9E696;}
+.F {background: #FFE980;}
+.G {background: #E7A8AB;}

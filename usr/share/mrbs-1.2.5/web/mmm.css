@@ -1,0 +1,12 @@
+div.toplogo a {display: block; text-indent: -500em;background: transparent url("pics/logoaegmrbs.jpg") top left no-repeat; height: 80px;}
+div#headermenu { background-color: #D1D6EF; border-top:1px solid black;}
+div#footer {background-color: #D1D6EF; border-top:1px solid black;}
+div.items h1, div.areas h1 {font-size: 1.3em;}
+.active {display: block; border: 1px solid black; background: #FFE980; padding: 2px;}
+ul li a {display: block; padding: 2px;}
+ul li{margin-top: 3px;}
+
+
+.E {background: #D9E696;}
+.F {background: #FFE980;}
+.G {background: #E7A8AB;}

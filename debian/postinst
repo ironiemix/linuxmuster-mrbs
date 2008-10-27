@@ -1,0 +1,61 @@
+#!/bin/sh -e
+DBINSTALLFILE="/usr/lib/linuxmuster-mrbs/mrbs_db.my.sql"
+
+MYSQLPW=`grep password /root/.my.cnf | tail -n 1 | awk '{print $3}'`
+#MYSQLPW="qtRvVyM"
+MRBSDBPW=`pwgen -s -1 -n 12`
+UPGRADE_TO_DEB=0;
+DB_EXISTS=0;
+
+# test db connection as root
+
+if ( ! mysql -u root -p${MYSQLPW} -e "use mysql;" > /dev/null 2>&1 ) then
+  echo "ERROR: Could not connect to mysql as root"
+  echo "       You have to setup your mrbs DB manually"
+  echo "       as described in the file"
+  echo "       /usr/lib/linuxmuster-mrbs/db-setup.txt"
+  exit
+fi
+
+if (  mysql -u root -p${MYSQLPW} -e "use mrbs;" > /dev/null 2>&1 ) then
+  echo "INFO: You have already a mrbs database on your system"
+  echo "      I will not overwrite this DB."
+  DB_EXISTS=1
+fi
+
+if [ ! -L /usr/share/mrbs-1.2.5/web/config.inc.php ]; then
+  echo "INFO  Linking main mrbs configuration config.inc.php"
+  echo "      to /etc/mrbs/config.inc.php"
+  if [ -f  /usr/share/mrbs-1.2.5/web/config.inc.php ]; then
+     echo "INFO: Saving old config..."
+     mv /usr/share/mrbs-1.2.5/web/config.inc.php /etc/mrbs/
+  fi
+  ln -s /etc/mrbs/config.inc.php /usr/share/mrbs-1.2.5/web/config.inc.php
+  UPGRADE_TO_DEB=1
+fi
+
+if [ $DB_EXISTS -eq 0 ]; then
+   echo "INFO: Installing empty mrbs DB..."
+   mysql -h localhost -u root -p${MYSQLPW} < $DBINSTALLFILE
+fi
+
+if [ $DB_EXISTS -eq 0 -o $UPGRADE_TO_DEB -eq 1 ]; then
+   echo "INFO: Setting new mrbs DB passwd..."
+   mysql -s -e "GRANT SELECT,INSERT,UPDATE,DELETE,CREATE,DROP,INDEX,ALTER ON mrbs.* TO mrbsadmin@localhost IDENTIFIED BY '$MRBSDBPW';"
+   perl -p -i -e "s/db_password\s*=.*/db_password =\"$MRBSDBPW\";/" /etc/mrbs/config.inc.php
+fi
+
+#Kopieren der mrbs.conf und Erstellen eines Links auf den Webserver Apache2
+if [ -L /etc/apache2/conf.d/mrbs ]; then 
+  rm /etc/apache2/conf.d/mrbs
+fi
+if [ -f  /etc/mrbs/mrbs.conf ]; then  
+   rm /etc/mrbs/mrbs.conf
+fi
+ln -s /etc/mrbs/mrbs_apache.conf /etc/apache2/conf.d/mrbs
+
+apache2ctl graceful
+
+exit 0;
+
+

@@ -1,0 +1,15 @@
+Source: linuxmuster-mrbs
+Section: debian-linuxmuster
+Priority: optional
+Maintainer: Frank Schiebel <schiebel@aeg-reutlingen.de>
+Build-Depends: debhelper (>= 4.0.0)
+Standards-Version: 3.6.0
+
+Package: linuxmuster-mrbs
+Section: unknown
+Priority: optional
+Maintainer: Frank Schiebel <schiebel@aeg-reutlingen.de>
+Architecture: i386
+Depends: linuxmuster-base pwgen mysql apache2 mysql-client-4.1 php4-mysql
+Description: Modification of Meeting Room Booking System (mrbs) for linux Musterloesung
+

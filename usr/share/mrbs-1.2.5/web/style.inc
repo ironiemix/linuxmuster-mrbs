@@ -1,0 +1,35 @@
+<?php
+
+# $Id: style.inc,v 1.10.2.2 2006/10/09 15:54:00 jberanek Exp $
+
+global $unicode_encoding;
+global $vocab; # outside of scope; needs to be denote as global
+
+?>
+    <link REL="stylesheet" href="mrbs_base.css" type="text/css">
+    <link REL="stylesheet" href="mrbs_usermod.css" type="text/css">
+    <META HTTP-EQUIV="Content-Type" content="text/html; charset=<?php
+   if ($unicode_encoding)
+   {
+     echo "utf-8";
+   }
+   else
+   {
+     # We use $vocab directly instead of get_vocab() because we have
+     # no requirement to convert the vocab text, we just output
+     # the charset
+     echo $vocab["charset"];
+   }
+?>">
+    <META NAME="Robots" content="noindex">
+<?php
+
+global $refresh_rate;
+global $PHP_SELF;
+
+if (($refresh_rate != 0) &&
+    preg_match("/(day|week|month)\.php/",$PHP_SELF))
+{
+  echo "    <META HTTP-EQUIV=\"Refresh\" CONTENT=\"$refresh_rate\">\n";
+}
+?>
