@@ -4,8 +4,15 @@
 require_once "grab_globals.inc.php";
 include "config.inc.php";
 include "functions.inc";
+include "mrbs_auth.inc";
 include "$dbsys.inc";
 
+#check if user is admin
+if( ! getAuthorised(2))
+{
+  showAccessDenied($day,$month, $year, $area);
+  exit();
+}
 
 function date_time_string($t)
 {

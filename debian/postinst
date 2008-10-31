@@ -54,6 +54,10 @@ if [ -f  /etc/mrbs/mrbs.conf ]; then
 fi
 ln -s /etc/mrbs/mrbs_apache.conf /etc/apache2/conf.d/mrbs
 
+if [ -d /etc/mrbs/.svn ]; then
+  rm -rf /etc/mrbs/.svn
+fi
+
 apache2ctl graceful
 
 exit 0;
