@@ -41,8 +41,8 @@ $db_tbl_prefix = "mrbs_";
 ###################################
 # Site identification information #
 ###################################
-$mrbs_admin = "administrator";
-$mrbs_admin_email = "administrator@localhost";
+$mrbs_admin = "admin";
+$mrbs_admin_email = "admin@calhost";
 
 # This is the text displayed in the upper left corner of every page. Either
 # type the name of your organization, or you can put your logo like this :
