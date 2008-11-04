@@ -125,7 +125,7 @@ function authGetUserLevel($user, $lev1_admin)
    
    // WILKE: Ist der User auch lehrer?
    $group= exec("id -gn $user");
-   if (strcasecmp($group ,'teachers') == 0) 
+   if (strcasecmp($group ,'lehrer') == 0) 
          return 1;
 	    
    // Everybody else is access level '0'
