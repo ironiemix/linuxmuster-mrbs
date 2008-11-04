@@ -195,7 +195,7 @@ $auth["type"] = "mlbw"; # How to validate the user/password. One of "none"
 # localhost IP address. Useful with IP sessions.
 #$auth["admin"][] = "127.0.0.1";
 # A user name from the user list. Useful with most other session schemes.
-$auth["admin"][] = "administrator";
+$auth["admin"][] = "admin";
 
 # 'auth_config' user database
 # Format: $auth["user"]["name"] = "password";
