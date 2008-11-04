@@ -1,10 +1,5 @@
 #!/bin/bash
 
-# Dieses Skript installiert eine Tar-Version des debian
-# pakets linuxmuster-mrbs auf Linuxmusterlösungen der Version 2.x
-# F. Schiebel <frank@linuxmuster.net>
-# GPLv2
-
 LATEST=linuxmuster-mrbs-2.3.tar.gz
 SVNURL=https://svn.linuxmuster.net/svn/linuxmuster/linuxmuster-mrbs/branches/2.3-1/tarfiles/
 DBINSTALLFILE="/usr/lib/linuxmuster-mrbs/mrbs_db.my.sql"
@@ -80,6 +75,7 @@ if [ -f  /etc/mrbs/mrbs.conf ]; then
    rm /etc/mrbs/mrbs.conf
 fi
 ln -s /etc/mrbs/mrbs_apache.conf /etc/httpd/mrbs.conf
+ln -s /etc/mrbs/mrbs_usermod.css /usr/share/mrbs-1.2.5/web/mrbs_usermod.css 
 
 CONF_INCLUDED=0
 grep -q MRBS-TAR /etc/httpd/httpd.conf && CONF_INCLUDED=1
