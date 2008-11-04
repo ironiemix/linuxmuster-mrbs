@@ -4,4 +4,4 @@
 
 VERSION=2.3
 
-tar -cvzf linuxmuster-mrbs-$VERSION.tar.gz ./usr ./etc --exclude ".svn"
+tar -cvzf tarfiles/linuxmuster-mrbs-$VERSION.tar.gz ./usr ./etc --exclude ".svn"
