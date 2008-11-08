@@ -1,14 +1,31 @@
 #!/bin/sh -e
+
+# source linuxmuster-base-config
+[ -f /usr/share/linuxmuster/config/dist.conf ] && . /usr/share/linuxmuster/config/dist.conf
+
+# DB template to install
 DBINSTALLFILE="/usr/lib/linuxmuster-mrbs/mrbs_db.my.sql"
 
+# get mysql root password
 MYSQLPW=`grep password /root/.my.cnf | tail -n 1 | awk '{print $3}'`
-#MYSQLPW="qtRvVyM"
+
+# generate mrbs DB password
 MRBSDBPW=`pwgen -s -1 -n 12`
+
+# getting basedn and server IP
+basedn=`grep basedn $NETWORKSETTINGS | sed "s/^.*\"\(.*\)\".*$/\1/"`
+serverip=`grep serverip $NETWORKSETTINGS | sed "s/^.*\"\(.*\)\".*$/\1/"`
+
+# config dir
+ETCDIR=/etc/mrbs/
+# apache config file for mrbs
+APACHECONF=mrbs_apache.conf
+
+# markers
 UPGRADE_TO_DEB=0;
 DB_EXISTS=0;
 
 # test db connection as root
-
 if ( ! mysql -u root -p${MYSQLPW} -e "use mysql;" > /dev/null 2>&1 ) then
   echo "ERROR: Could not connect to mysql as root"
   echo "       You have to setup your mrbs DB manually"
@@ -57,6 +74,12 @@ ln -s /etc/mrbs/mrbs_apache.conf /etc/apache2/conf.d/mrbs
 if [ -d /etc/mrbs/.svn ]; then
   rm -rf /etc/mrbs/.svn
 fi
+
+# basedn und serverip in /etc/mrbs_apache.conf einparsen
+cd $ETCDIR
+cp $APACHECONF $APACHECONF.tmp
+sed -e "s/###BASEDN###/$basedn/" $APACHECONF.tmp | sed -e "s/###IP###/$serverip/" > $APACHECONF
+rm $APACHECONF.tmp
 
 apache2ctl graceful
 

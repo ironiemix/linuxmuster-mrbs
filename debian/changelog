@@ -1,3 +1,11 @@
+linuxmuster-mrbs (0.3.0-0) openlml; urgency=low
+   
+  * Added sample auth basic configuration in /etc/mrbs/mrbs_apache.conf
+  * Removed list-bullets and padding in unordered lists for "Bereiche" und "Objekte"
+  * Fixed a minor CSS issue for IE 6
+
+ -- Frank Schiebel <frank@linuxmuster.net>  Sat, 08 Nov 2008 10:51:15 +0100
+
 linuxmuster-mrbs (0.2.2-1) openlml; urgency=low
    
   * Fixed dependencies for LML 4.x

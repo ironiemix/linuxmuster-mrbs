@@ -60,9 +60,9 @@ a:active {color: #08143F;}
 /* Intern, Extern, Wartung */
 .E {background: #D9E696;}
 .F {background: #FFE980;}
-.G {background: #E7A8AB;}
+.G {background: #E7A8AB;padding:0;}
 
-div.areas ul {list-style:none; text-indent:0; margin:0; }
-div.items ul {list-style:none; text-indent:0; margin:0;}
+div.areas ul {list-style:none; text-indent:0; margin:0; padding:0;}
+div.items ul {list-style:none; text-indent:0; margin:0; padding:0;}
 
 
