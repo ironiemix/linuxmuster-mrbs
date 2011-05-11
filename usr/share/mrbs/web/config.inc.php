@@ -46,12 +46,48 @@ $db_tbl_prefix = "mrbs_";
 // $db_nopersist = 1;
 
 
-/* Add lines from systemdefaults.inc.php here to change the default
-   configuration. Do _NOT_ modify systemdefaults.inc.php. */
+// Configuration for linuxmuster-mrbs
 
+// Admins
+$mrbs_admin = "administrator";
+$mrbs_admin_email = "administrator@localhost";
 
+// Schulname
+$mrbs_company = "<a href=https://server/mrbs/>Raumbuchungssystem</a>";
 
+// Theme
+$theme = "default";
 
+// Zeitraster
+$enable_periods = TRUE;
+$resolution = 900;
+$morningstarts = 7;
+$morningstarts_minutes = 0;
+$eveningends   = 19;
+$eveningends_minutes = 45;
+// Wochenstart am Montag
+$weekstarts = 1;
+// Europ Datumsangabe
+$dateformat = 1;
+// Standardansicht
+$default_view = "week";
+
+// Beispiel fuer eine Schule, anpassen an eigene Beduerfnisse:
+
+$periods[] = "(1.)07:40-08:25";
+$periods[] = "(2.)08:30-09:15";
+#$periods[] = "1.Pause";
+$periods[] = "(3.)09:35-10:20";
+$periods[] = "(4.)10:25-11:10";
+#$periods[] = "2.&nbsp;Pause";
+$periods[] = "(5.)11:20-12:05";
+$periods[] = "(6.)12:10-12:55";
+$periods[] = "(7.)13:30-14:15";
+$periods[] = "(8.)14:20-15:05";
+$periods[] = "(9.)15:10-15:55";
+#$periods[] = "3.Pause";
+$periods[] = "(10.)16:00-16:45";
+$periods[] = "(11.)16:50-17:35";
 
 // This next section must come at the end of the config file - ie after any
 // language and mail settings, as the definitions are used in the included file
